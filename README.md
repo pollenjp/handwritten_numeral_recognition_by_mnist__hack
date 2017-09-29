@@ -1,8 +1,7 @@
 # handwritten_numeral_recognition_by_mnist__hack
 On your PC, you write number by your pointer and NN recognize what number you wrote.
 
-My application
-http://ec2-52-199-237-194.ap-northeast-1.compute.amazonaws.com/cgi-bin/handwritten_numeral_recognition_application_by_mnist/py.py
+<a href="http://ec2-52-199-237-194.ap-northeast-1.compute.amazonaws.com/cgi-bin/handwritten_numeral_recognition_application_by_mnist/py.py">My application</a>
 
 
 #使い方
