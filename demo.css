@@ -1,0 +1,38 @@
+.link-btn a{
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 24px;
+    display: inline-block;
+    transition: all .2s;
+    background-color: #376f98;
+    border-radius: 4px;
+}
+
+.link-btn a:hover{
+    background-color: #184566;
+    text-decoration: none;
+}
+body {                                                                                                           
+    background: #eee;
+}
+#canvas {
+    margin: 10px;
+    background: #ffffff;
+    border: 1px solid #aaaaaa;
+}   
+input[type="image"]{
+    padding: 2px;
+    outline: none;
+}   
+input[type="image"].active{
+    background-color: #fff;
+}   
+
+.can{
+    fload:left;
+}
+/*
+.newImage{
+    float:left;
+}
+*/

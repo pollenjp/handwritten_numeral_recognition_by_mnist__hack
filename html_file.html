@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Drawing tool, canvas</title>
+        <link rel="stylesheet" href="./demo.css">
+    </head>
+
+    <body>
+        <div class="robot">
+            <p>I am a ROBOT!</p>
+            <p>Please Draw Number ! </p>
+            <br>
+            %(head)s
+            %(result)s
+            %(tail)s
+        </div>
+        <div class="can">
+            <canvas id="canvas" width="280" height="280"></canvas>
+            <img id="newImg">
+        </div>
+        <input type="button" id="delete_canvas" value="Clear" onClick="delete_canvas()">
+        <input type="image" id="pencil" src="1.png" width="35px" class="active" onClick="tool(1)">
+        <input type="image" id="eraser" src="2.png" width="35px" onClick="tool(2)">
+
+        <script type="text/javascript">
+var drawing = false;
+var before_x = 0;
+var before_y = 0;
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+
+/* fill canvas with white square */
+ctx.fillStyle = "rgb(0, 0, 0)";
+ctx.fillRect(0,00,280,280);
+/* end */
+
+canvas.addEventListener('mousemove', draw_canvas);
+canvas.addEventListener('mousedown', function(e) {
+    drawing = true;
+    var rect = e.target.getBoundingClientRect();
+    before_x = e.clientX - rect.left;
+    before_y = e.clientY - rect.top;
+});
+canvas.addEventListener('mouseup', function() {
+    drawing = false;
+});
+function draw_canvas(e) {
+    if (!drawing){
+        return
+    };
+    var rect = e.target.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = "rgb(255, 255, 255)"
+        ctx.lineWidth = 15;
+    ctx.beginPath();
+    ctx.moveTo(before_x, before_y);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    ctx.closePath();
+    before_x = x;
+    before_y = y;
+}
+
+function delete_canvas(){
+    ret = confirm('deleate the contents of canvas');
+    if (ret == true){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgb(0, 0, 0)";
+        ctx.fillRect(0,00,280,280);
+    }
+}
+var pen = document.getElementById('pencil');
+var era = document.getElementById('eraser');
+function tool(btnNum){
+    if (btnNum == 1){
+        ctx.globalCompositeOperation = 'source-over';
+        pen.className = 'active';
+        era.className = '';
+    }
+    else if (btnNum == 2){
+        ctx.globalCompositeOperation = 'destination-out';
+        pen.className = '';
+        era.className = 'active';
+    }
+}
+        </script>
+
+        <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83673906-1', 'auto');
+ga('send', 'pageview');
+
+        </script>
+
+        <!--
+            convert canvas to png 
+        -->
+        <script>
+function chgImg(){
+    var png = canvas.toDataURL();
+    document.getElementById("newImg").src = png;
+    document.getElementById("newImg3").value = png;
+}
+        </script>
+        <br>
+        <input type="button" value="Finish Drawing" onclick="chgImg()">
+        <!--
+            analyze ( pass to Python )
+        -->
+        <form action="py.py" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="newImg3" name="picdata3" >
+            <input type="submit" value="send to ROBOT">
+        </form>
+    </body>
+</html>
+
