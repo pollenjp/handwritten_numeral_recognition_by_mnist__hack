@@ -1,4 +1,10 @@
 # handwritten_numeral_recognition_by_mnist__hack
+
+Warning : This application server is stopping now.
+I will run it on another server.
+
+
+
 On your PC, write number by your pointer. Then, NN recognize what number you wrote.
 
 <a href="http://ec2-52-199-237-194.ap-northeast-1.compute.amazonaws.com/cgi-bin/handwritten_numeral_recognition_application_by_mnist/py.py">My application</a>
